@@ -1,64 +1,33 @@
-from django.urls import path
-from.import views 
-from django.urls import reverse
- 
+"""
+URL configuration for Adrgroup project.
+
+The `urlpatterns` list routes URLs to views. For more information please see:
+    https://docs.djangoproject.com/en/5.0/topics/http/urls/
+Examples:
+Function views
+    1. Add an import:  from my_app import views
+    2. Add a URL to urlpatterns:  path('', views.home, name='home')
+Class-based views
+    1. Add an import:  from other_app.views import Home
+    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
+Including another URLconf
+    1. Import the include() function: from django.urls import include, path
+    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
+"""
+from django.contrib import admin
+from django.urls import path,include
+from django.conf.urls.static import static
+from django.conf import settings
+from django.conf.urls import handler404
+
+
+
+handler404 = 'Adrgroup.views.custom_404'
+
 urlpatterns = [
-        path("",views.home , name="home"),
-       
-        path("about",views.About , name="About"),
-       
-        path ("products",views.products, name="products"),
-        
-      #  path("<str:id>",views.v1, name="views1"),
-        
-        path ("services",views.services, name="services"),
-       
-        path ("sap",views.sap, name="sap"),
-       
-        path ("s4hana",views.s4hana, name="s4hana"),
-       
-        path ("successfactors",views.successfactors, name="successfactors"),
-       
-        path ("sapb1",views.sapb1, name="sapb1"),
-       
-        path ("hybris",views.hybris, name="hybris"),
-       
-        path ("manufacturing",views.manufacturing, name="manufacturing"),
-       
-        path ("automotive",views.automotive, name="automotive"),
-       
-        path ("logistics",views.logistics, name="logistics"),
-        
-        path ("retail",views.retail, name="retail"),
-       
-        path ("education",views.education, name="education"),
-       
-        path ("career",views.career, name="career"),
-       
-                         
-        path ("jobforms",views.jobforms,name="jobforms"),
-
-        path ("contact",views.contact, name="contact"),
-
-        path("fotopia",views.fotopia, name ="fotopia"),
-
-        path ("smartboat",views.smartboat,name="smartboat"),
-
-        path ("erp",views.erp,name="erp") ,
-
-        path ( "itstaffing" , views.itstaffing,name= "itstaffing"), 
-
-        path ("masterdata" , views.masterdata,name= "masterdata"), 
-     
-        path ("bigdat" , views.bigdat ,name= "bigdata"), 
- 
-        path ("itesandglobalsupport" , views.itesandglobalsupport ,name= "itesandglobalsupport"),       
-        
-        path ("careersucess" , views.careersuccess ,name= "careersucess"),
-
-         path ("careerfail" , views.careerfail ,name= "careerfail"),
-
-          path ("contactsucess" , views.contactsucess ,name= "contactsucess"),
-
-           path ("contactfail" , views.contactfail ,name= "contactfail"),
+    path('admin/', admin.site.urls),
+    path('',include("Adr.urls")),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
